@@ -4,9 +4,13 @@ import mu.KotlinLogging
 
 private val logger = KotlinLogging.logger {}
 
+// Properties used for Placemark
+var title: String = ""
+var description: String = ""
+
 fun main(args: Array<String>){
     logger.info { "Launching Placemark Console App" }
-    println("Placemark Kotlin App Version 1.0")
+    println("Placemark Kotlin App Version 2.0")
 
     var input: Int
 
@@ -46,7 +50,13 @@ fun menu(): Int {
 }
 
 fun addPlacemark() {
-    println("You chose Add Placemark")
+    println("Add Placemark")
+    println()
+    print("Enter a title: ")
+    title = readLine()!!
+    print("Enter a description: ")
+    description = readLine()!!
+    println("You entered $title for title, and $description for description")
 }
 
 fun updatePlacemark() {
