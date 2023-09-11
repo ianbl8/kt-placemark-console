@@ -60,8 +60,13 @@ fun addPlacemark() {
 }
 
 fun updatePlacemark() {
-    println("You chose Update Placemark")
-}
+    println("Add Placemark")
+    println()
+    print("Enter a new title: ")
+    title = readLine()!!
+    print("Enter a new description: ")
+    description = readLine()!!
+    println("You entered $title to update the title, and $description to update the description")}
 
 fun listAllPlacemarks() {
     println("You chose List All Placemarks")
