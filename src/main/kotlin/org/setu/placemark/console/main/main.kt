@@ -1,12 +1,11 @@
 package org.setu.placemark.console.main
 
 import mu.KotlinLogging
+import org.setu.placemark.console.models.PlacemarkModel
 
 private val logger = KotlinLogging.logger {}
 
-// Properties used for Placemark
-var title: String = ""
-var description: String = ""
+var placemark = PlacemarkModel()
 
 fun main(args: Array<String>){
     logger.info { "Launching Placemark Console App" }
@@ -53,20 +52,20 @@ fun addPlacemark() {
     println("Add Placemark")
     println()
     print("Enter a title: ")
-    title = readLine()!!
+    placemark.title = readLine()!!
     print("Enter a description: ")
-    description = readLine()!!
-    println("You entered $title for title, and $description for description")
+    placemark.description = readLine()!!
+    println("You entered \"" + placemark.title + "\" for title, and \"" + placemark.description + "\" for description")
 }
 
 fun updatePlacemark() {
-    println("Add Placemark")
+    println("Update Placemark")
     println()
     print("Enter a new title: ")
-    title = readLine()!!
+    placemark.title = readLine()!!
     print("Enter a new description: ")
-    description = readLine()!!
-    println("You entered $title to update the title, and $description to update the description")}
+    placemark.description = readLine()!!
+    println("You entered \"" + placemark.title + "\" to update the title, and \"" + placemark.description + "\" to update the description")}
 
 fun listAllPlacemarks() {
     println("You chose List All Placemarks")
