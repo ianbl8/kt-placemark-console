@@ -27,6 +27,7 @@ class PlacemarkController {
                 2 -> update()
                 3 -> list()
                 4 -> searchPlacemarks()
+                5 -> delete()
                 -99 -> dummyData()
                 -1 -> println("Exiting Placemark App")
                 else -> println("Invalid Option")
@@ -78,6 +79,20 @@ class PlacemarkController {
     fun search(id: Long) : PlacemarkModel? {
         var foundPlacemark = placemarks.findOne(id)
         return foundPlacemark
+    }
+
+    fun delete() {
+        placemarkView.listPlacemarks(placemarks)
+        var searchId = placemarkView.getId()
+        val deletePlacemark = search(searchId)
+
+        if (deletePlacemark != null) {
+            placemarks.delete(deletePlacemark)
+            println("Placemark Deleted")
+            placemarkView.listPlacemarks(placemarks)
+        } else {
+            println("Placemark Not Deleted")
+        }
     }
 
     fun dummyData() {
