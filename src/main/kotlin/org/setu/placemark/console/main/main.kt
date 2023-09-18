@@ -1,11 +1,12 @@
 package org.setu.placemark.console.main
 
 import mu.KotlinLogging
+import org.setu.placemark.console.models.PlacemarkMemStore
 import org.setu.placemark.console.models.PlacemarkModel
 
 private val logger = KotlinLogging.logger {}
 
-val placemarks = ArrayList<PlacemarkModel>()
+val placemarks = PlacemarkMemStore()
 
 fun main(args: Array<String>){
     logger.info { "Launching Placemark Console App" }
@@ -55,8 +56,7 @@ fun addPlacemark() {
     print("Enter a description: ")
     addPlacemark.description = readLine()!!
     if (addPlacemark.title.isNotEmpty() && addPlacemark.description.isNotEmpty()) {
-        addPlacemark.id = placemarks.size.toLong()
-        placemarks.add(addPlacemark.copy())
+        placemarks.create(addPlacemark.copy())
         logger.info("Placemark Added: $addPlacemark")
     } else {
         logger.info("Placemark Not Added")
@@ -92,7 +92,7 @@ fun updatePlacemark() {
 fun listAllPlacemarks() {
     println("List All Placemarks")
     println()
-    placemarks.forEach { logger.info("${it}") }
+    placemarks.logAll()
     println()
 }
 
@@ -119,13 +119,13 @@ fun getId() : Long {
 }
 
 fun search(id: Long) : PlacemarkModel? {
-    var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.id == id }
+    var foundPlacemark: PlacemarkModel? = placemarks.findOne(id)
     return foundPlacemark
 }
 
 fun dummyData() {
-    placemarks.add(PlacemarkModel(0, "Ballyfermot", "Home of \"Lam's\" and \"New Lam's\""))
-    placemarks.add(PlacemarkModel(1, "Chessington", "It's a World of Adventures!"))
-    placemarks.add(PlacemarkModel(2, "Brussels", "Bruxelles ma belle !"))
-    placemarks.add(PlacemarkModel(3, "Berlin", "Das war die schönste Zeit!"))
+    placemarks.create(PlacemarkModel(title = "Ballyfermot", description = "Home of \"Lam's\" and \"New Lam's\""))
+    placemarks.create(PlacemarkModel(title = "Chessington", description = "It's a World of Adventures!"))
+    placemarks.create(PlacemarkModel(title = "Brussels", description = "Bruxelles ma belle !"))
+    placemarks.create(PlacemarkModel(title = "Berlin", description = "Das war die schönste Zeit!"))
 }
