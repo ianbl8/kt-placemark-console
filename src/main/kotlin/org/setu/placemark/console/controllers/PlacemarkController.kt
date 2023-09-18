@@ -13,12 +13,10 @@ class PlacemarkController {
 
     init {
         logger.info { "Launching Placemark Console App" }
-        println("Placemark Kotlin App Version 3.0")
+        println("Placemark Kotlin App Version 4.0")
     }
 
     fun start() {
-        logger.info { "Launching Placemark Console App" }
-        println("Placemark Kotlin App Version 3.0")
         var input: Int
         do {
             input = placemarkView.menu()
