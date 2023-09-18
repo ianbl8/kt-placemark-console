@@ -1,5 +1,6 @@
 package org.setu.placemark.console.views
 
+import org.setu.placemark.console.models.PlacemarkJSONStore
 import org.setu.placemark.console.models.PlacemarkMemStore
 import org.setu.placemark.console.models.PlacemarkModel
 
@@ -54,7 +55,7 @@ class PlacemarkView {
         return updated
     }
 
-    fun listPlacemarks(placemarks: PlacemarkMemStore) {
+    fun listPlacemarks(placemarks: PlacemarkJSONStore) {
         println()
         println("List All Placemarks")
         placemarks.logAll()
